@@ -19,4 +19,11 @@ api.interceptors.request.use(
   }
 );
 
+export const getApiError = (err, defaultMsg = 'An error occurred') => {
+  if (!err.response) {
+    return `Network Error: Cannot connect to backend (${API_URL}). Check VITE_API_URL in Vercel settings.`;
+  }
+  return err.response?.data?.detail || defaultMsg;
+};
+
 export default api;

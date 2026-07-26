@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { HeartPulse, Mail, Lock, ArrowRight, ShieldAlert } from 'lucide-react';
-import api from '../services/api';
+import api, { getApiError } from '../services/api';
 
 const Login = () => {
   const { login } = useAuth();
@@ -32,8 +32,7 @@ const Login = () => {
       showToast('Logged in successfully!', 'success');
       navigate('/dashboard');
     } catch (err) {
-      const msg = err.response?.data?.detail || 'Invalid email or password';
-      showToast(msg, 'error');
+      showToast(getApiError(err, 'Invalid email or password'), 'error');
     } finally {
       setLoading(false);
     }
@@ -57,8 +56,7 @@ const Login = () => {
       setForgotEmail('');
       setForgotPassword('');
     } catch (err) {
-      const msg = err.response?.data?.detail || 'Failed to update password. Ensure email is registered.';
-      showToast(msg, 'error');
+      showToast(getApiError(err, 'Failed to update password. Ensure email is registered.'), 'error');
     } finally {
       setForgotLoading(false);
     }
