@@ -1003,6 +1003,7 @@ Follow this 3-step guide to deploy **MediAssist AI** live on the web for free us
    - **Build Command:** `pip install -r requirements.txt`
    - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
 6. Add **Environment Variables** under *Advanced*:
+   - `PYTHON_VERSION`: `3.11.9` *(Crucial: fixes Python 3.14 build errors on Render)*
    - `MONGODB_URL`: *(Your MongoDB Atlas connection string)*
    - `DATABASE_NAME`: `mediassist_db`
    - `JWT_SECRET`: *(Any secret long key string)*
@@ -1011,6 +1012,7 @@ Follow this 3-step guide to deploy **MediAssist AI** live on the web for free us
    - `GEMINI_API_KEY`: *(Optional)*
    - `OPENAI_API_KEY`: *(Optional)*
 7. Click **Create Web Service**. Copy your live backend URL (e.g. `https://mediassist-backend.onrender.com`).
+
 
 ---
 
